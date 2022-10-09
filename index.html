@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Password</title>
+
+    <style>
+        *{
+            padding: 0;margin: 0;box-sizing: border-box;
+        }
+        div{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: black;
+        }
+        section{
+            width: 250px;
+            height: 300px;
+            display: flex;
+            padding: 10px 0px;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            border: 3px solid rgb(255, 120, 2);
+            background-color: rgb(55, 58, 58);
+
+        }
+        h3{
+            text-transform: uppercase;
+            color: antiquewhite;
+            font-size: 17px;
+        }
+        .inputBox{
+            width: 80%;
+            /* height: 20px; */
+            padding: 5px;
+            font-size: 15px;
+            border: 3px solid rgb(255, 120, 2);
+            outline: none;
+        }
+        #btn{
+            padding: 7px 15px;
+            background-color: rgb(255, 120, 2);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+        span{
+            color: aliceblue;
+            font-size: 17px;
+            height: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <section>
+            <h3>Check Your Password</h3>
+            <input id="name" class="inputBox" type="text" placeholder="Enter Your Name">
+            <input id="pass" class="inputBox" type="password" placeholder="Enter The Password">
+            <input id="btn" type="submit" value="Click">
+            <span id="msg"></span>
+        </section>
+
+    </div>
+
+
+    <script>
+
+// document.getElementsByTagName('title')[0].innerHTML = 'world';
+
+        const name = document.getElementById("name");
+        const pass = document.getElementById("pass");
+        const msg= document.getElementById("msg");
+        const btn= document.getElementById("btn");
+
+            var d = new Date();
+            var s = d.getSeconds();
+            var m = d.getMinutes();
+            var h = d.getHours();
+            h = (h % 12) || 12;
+            msg.innerHTML= "Time- "+("0" + h).substr(-2) + ":" + ("0" + m).substr(-2);
+            var CurTime= ("0" + h).substr(-2)+("0" + m).substr(-2);
+            console.log(CurTime);
+       
+
+        btn.addEventListener('click', ()=>{
+            // alert("name= "+ name.value+" Password= "+pass.value);
+
+
+            if(CurTime==pass.value){
+                // alert("Login Successfull "+ name.value);
+                console.log("password OK");
+                window.location.href="login.html";
+                localStorage.setItem("nameVal", name.value);
+            }
+            else{
+                alert("Password Wrong");
+                console.log("password Wrong");
+            }
+
+        });
+
+    </script>
+</body>
+</html>
